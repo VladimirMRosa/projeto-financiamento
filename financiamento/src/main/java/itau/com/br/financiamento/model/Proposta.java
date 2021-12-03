@@ -24,5 +24,15 @@ public class Proposta {
 	private Cliente cliente;
 	@ManyToOne
 	private Usuario usuario;
+	
+	
+	public Proposta(BigDecimal taxaJuros, BigDecimal valorFinanciado, Cliente cliente, Usuario usuario) {
+		this.taxaJuros = taxaJuros;
+		this.valorFinanciado = valorFinanciado;
+		this.cliente = cliente;
+		this.usuario = usuario;
+	}
 
+	
+	
 }
