@@ -26,11 +26,10 @@ public class Proposta {
 	private Usuario usuario;
 	
 	
-	public Proposta(BigDecimal taxaJuros, BigDecimal valorFinanciado, Cliente cliente, Usuario usuario) {
+	public Proposta(BigDecimal taxaJuros, BigDecimal valorFinanciado, Cliente cliente) {
 		this.taxaJuros = taxaJuros;
 		this.valorFinanciado = valorFinanciado;
 		this.cliente = cliente;
-		this.usuario = usuario;
 	}
 
 	

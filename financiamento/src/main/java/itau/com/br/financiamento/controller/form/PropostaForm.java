@@ -10,7 +10,6 @@ import itau.com.br.financiamento.infrastructure.database.ClienteRepository;
 import itau.com.br.financiamento.infrastructure.database.UsuarioRepository;
 import itau.com.br.financiamento.model.Cliente;
 import itau.com.br.financiamento.model.Proposta;
-import itau.com.br.financiamento.model.Usuario;
 import lombok.Data;
 
 @Data
@@ -27,10 +26,8 @@ public class PropostaForm {
 	
 	public Proposta converter(ClienteRepository clienteRepository, UsuarioRepository usuarioRepository) {
 		Cliente cliente = new Cliente();
-		Usuario usuario = new Usuario();
 		cliente.setCpf(clienteRepository.findByCpf(cpfCliente));
-		usuario.setCpf(usuarioRepository.findByCpf(cpfVendedor));
-		return new Proposta( taxaJuros, valorFinanciado, cliente, usuario);
+		return new Proposta( taxaJuros, valorFinanciado, cliente);
 	}
 
 }
