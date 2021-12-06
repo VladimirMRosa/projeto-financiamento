@@ -7,29 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "propostas")
-public class Proposta {
+@Table(name = "produtos")
+public class Produto {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate data = LocalDate.now();
-	private BigDecimal valoTotal;
-    @ManyToOne
-	private Cliente cliente;
+	private String nome;
+	private BigDecimal preco;
+	private LocalDate dataCadastro;
 	
-	public Proposta() {
+	public Produto() {
 	}
 
-	public Proposta(BigDecimal valorFinanciado, Cliente cliente) {
-		this.valoTotal = valorFinanciado;
-		this.cliente = cliente;
-	}
-	
 }

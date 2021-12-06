@@ -13,6 +13,7 @@ public class LoginForm {
 	@CPF(message = "Dados do CPF incorreto") 
 	@NotBlank(message = "Informe o CPF")
 	private String cpf;
+	@NotBlank(message = "informe sua senha")
 	private String password;
 
 	

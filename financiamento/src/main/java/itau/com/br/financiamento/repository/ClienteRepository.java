@@ -1,4 +1,4 @@
-package itau.com.br.financiamento.infrastructure.database;
+package itau.com.br.financiamento.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
