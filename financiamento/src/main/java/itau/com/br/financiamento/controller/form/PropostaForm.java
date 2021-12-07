@@ -2,8 +2,6 @@ package itau.com.br.financiamento.controller.form;
 
 import java.math.BigDecimal;
 
-import javax.validation.constraints.NotBlank;
-
 import itau.com.br.financiamento.model.Cliente;
 import itau.com.br.financiamento.model.Proposta;
 import itau.com.br.financiamento.repository.ClienteRepository;
@@ -12,9 +10,7 @@ import lombok.Data;
 @Data
 public class PropostaForm {
 	
-	@NotBlank(message = "Digite o valor da taxa de Juros")
 	private BigDecimal taxaJuros;
-	@NotBlank(message = "Digite o valor do financiamento")
 	private BigDecimal valorFinanciamento;
 	private Cliente cliente;
 	

@@ -3,9 +3,10 @@ package itau.com.br.financiamento.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import itau.com.br.financiamento.controller.form.UsuarioForm;
 import itau.com.br.financiamento.dto.UsuarioDto;
 import itau.com.br.financiamento.model.Usuario;
 import itau.com.br.financiamento.repository.UsuarioRepository;
@@ -22,10 +24,8 @@ import itau.com.br.financiamento.repository.UsuarioRepository;
 public class UsuarioController {
 	
 	private UsuarioRepository usuarioRepository;
-	private final BCryptPasswordEncoder encoder;
 	
-	public UsuarioController(UsuarioRepository usuarioRepository, BCryptPasswordEncoder encoder) {
-		this.encoder = encoder;
+	public UsuarioController(UsuarioRepository usuarioRepository) {
 		this.usuarioRepository = usuarioRepository;
 	}
 
@@ -46,8 +46,10 @@ public class UsuarioController {
 	}
 
 	  @PostMapping("/salvar")
-	    public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario) {
-	        usuario.setPassword(encoder.encode(usuario.getCpf()));
+	    public ResponseEntity<Usuario> salvar(@RequestBody @Valid UsuarioForm form) {
+	        form.setPassword(new BCryptPasswordEncoder().encode(form.getPassword()));
+	       
+	        Usuario usuario =  form.converter(new Usuario());
 	        return ResponseEntity.ok(usuarioRepository.save(usuario));
 	    }
 }
