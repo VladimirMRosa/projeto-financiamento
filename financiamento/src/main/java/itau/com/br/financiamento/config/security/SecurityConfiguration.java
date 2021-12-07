@@ -37,19 +37,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
-	//configuracoes de autenticacao
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(autenticacaoService)
 		.passwordEncoder(new BCryptPasswordEncoder());
 	}
 	
-	//configuracoes de autorizacao
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 		.antMatchers(HttpMethod.GET, "/proposta/*").permitAll()
-		.antMatchers(HttpMethod.GET, "/cliente").permitAll()
+		.antMatchers(HttpMethod.GET, "/proposta").permitAll()
 		.antMatchers(HttpMethod.POST, "/auth").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()
@@ -58,7 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		;
 	}
 	
-	//configuracoes de recursos estaticos(js, css, imagens)
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 	}

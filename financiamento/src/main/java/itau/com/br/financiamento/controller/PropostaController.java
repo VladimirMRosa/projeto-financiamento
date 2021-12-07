@@ -56,10 +56,7 @@ public class PropostaController {
 
 	@PostMapping
 	public ResponseEntity<PropostaDto> cadastrarProposta(@RequestBody @Valid PropostaForm form, UriComponentsBuilder uriBuilder) {
-		System.out.println(form);
 		Proposta proposta = form.converter(clienteRepository);
-		System.out.println(form);
-		System.out.println(proposta);
 		propostaRepository.save(proposta);
 
 		URI uri = uriBuilder.path("/proposta/{id}").buildAndExpand(proposta.getId()).toUri();

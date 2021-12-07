@@ -22,7 +22,6 @@ import itau.com.br.financiamento.dto.TokenDto;
 @RequestMapping("/auth")
 public class AutenticacaoController {
 	
-	private String expiration;
 	private AuthenticationManager authenticationManager;
 	private TokenService tokenService;
 
