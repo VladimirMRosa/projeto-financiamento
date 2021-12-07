@@ -1,6 +1,7 @@
 package itau.com.br.financiamento.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -35,6 +36,13 @@ public class PropostaController {
 		this.propostaRepository = propostaRepository;
 		this.clienteRepository = clienteRepository;
 	}
+	
+	
+	@GetMapping
+	public List<Proposta> listarPropostas (){
+		return propostaRepository.findAll();
+		
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<PropostaDto> detalharProposta (@PathVariable Long id){
@@ -48,7 +56,10 @@ public class PropostaController {
 
 	@PostMapping
 	public ResponseEntity<PropostaDto> cadastrarProposta(@RequestBody @Valid PropostaForm form, UriComponentsBuilder uriBuilder) {
+		System.out.println(form);
 		Proposta proposta = form.converter(clienteRepository);
+		System.out.println(form);
+		System.out.println(proposta);
 		propostaRepository.save(proposta);
 
 		URI uri = uriBuilder.path("/proposta/{id}").buildAndExpand(proposta.getId()).toUri();
@@ -57,8 +68,7 @@ public class PropostaController {
 
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<PropostaDto> atualizar(@PathVariable Long id,
-			@RequestBody @Valid AtualizacaoPropostaForm form) {
+	public ResponseEntity<PropostaDto> atualizar(@PathVariable Long id,@RequestBody @Valid AtualizacaoPropostaForm form) {
 		Optional<Proposta> optional = propostaRepository.findById(id);
 		if (optional.isPresent()) {
 			Proposta proposta = form.atualizar(id, propostaRepository);

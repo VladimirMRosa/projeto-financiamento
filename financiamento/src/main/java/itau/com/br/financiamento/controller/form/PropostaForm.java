@@ -22,6 +22,7 @@ public class PropostaForm {
 		Proposta proposta = new Proposta();
 		proposta.setTaxaJuros(this.taxaJuros);
 		proposta.setValorFinanciamento(this.valorFinanciamento);
+		proposta.setCliente(dadoCliente);
 		return proposta;
 	}
 	
