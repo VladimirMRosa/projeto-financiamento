@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuarios")
 public class Usuario implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
@@ -34,6 +34,8 @@ public class Usuario implements UserDetails {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Perfil> perfis = new ArrayList<>();
 	
+	public Usuario() {
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

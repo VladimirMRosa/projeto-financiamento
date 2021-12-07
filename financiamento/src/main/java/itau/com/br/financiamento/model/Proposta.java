@@ -19,16 +19,18 @@ public class Proposta {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private BigDecimal valorFinanciamento;
+	private BigDecimal taxaJuros;
 	private LocalDate data = LocalDate.now();
-	private BigDecimal valoTotal;
-    @ManyToOne
+   
+	@ManyToOne
 	private Cliente cliente;
+	
 	
 	public Proposta() {
 	}
 
-	public Proposta(BigDecimal valorFinanciado, Cliente cliente) {
-		this.valoTotal = valorFinanciado;
+	public Proposta(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	
